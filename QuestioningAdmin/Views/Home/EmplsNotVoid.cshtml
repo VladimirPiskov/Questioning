@@ -1,0 +1,32 @@
+﻿@using QuestioningAdmin.Models
+@model EmplsNotVoidModel
+
+@{
+    ViewBag.Title = "Неголосуны";
+}
+
+
+
+<h3>Неголосуны @Model.DepName</h3>
+<h4>@Html.ActionLink("На главную", "Index", "Home")</h4>
+<table class="table">
+   
+
+    @foreach (CEmployee r in Model.Empls)
+    {
+
+        <tr>
+
+         
+            <td>@r.FirstName @r.LastName </td>
+            
+            
+
+        </tr>
+    }
+
+</table>
+<h4>@Html.ActionLink("На главную", "Index", "Home")</h4>
+
+
+

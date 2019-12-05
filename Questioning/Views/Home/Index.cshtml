@@ -1,0 +1,39 @@
+﻿@using Questioning.Models
+@model SetEmployeeModel 
+@{
+    ViewBag.Title = "Укажите ваш номер либо номер подраздения и должность";
+}
+
+<div class="jumbotron " style="margin-top:10%">
+
+    @if (Model.ErrorMsg != "")
+    {
+        <p style="color:red">@Model.ErrorMsg</p>
+    }
+
+
+    @using (Html.BeginForm("Questions", "Home", FormMethod.Get))
+
+    {
+
+        <div class="form-group" style="margin-bottom:60px">
+            <div>
+                <label for="Num">Введите Ваш Staff номер:</label>
+            </div>
+            <div class="col-xs-2 col-sm-2" style="min-width:120px">
+                <input type="text" class="form-control input-lg pull-right" style="text-align:right" name="Num" maxlength="5" value="0" />
+            </div>
+
+
+
+            <div class="col-xs-3 col-sm-3">
+                <input type="submit" class="btn btn-default" value="Готово" />
+            </div>
+           
+        </div>
+    }
+
+
+   
+
+</div>

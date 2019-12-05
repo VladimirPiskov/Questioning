@@ -1,0 +1,34 @@
+﻿@using QuestioningAdmin.Models
+@model QuestioningAdminModel
+
+@{
+    ViewBag.Title = "Количество проголосовавших";
+}
+<h4>Количество проголосовавших</h4>
+
+    <table class="table">
+        <thead>
+            <tr class="caption">
+                <th>Подразделение </th>
+                <th >Всего сотрудников</th>
+                <th>Анкет заполненно</th>
+                <th>%</th>
+                
+            </tr>
+        </thead>
+
+        @foreach (QuestioningResultModel r in Model.Res.OrderBy(a=>a.PecentVoided))
+        {
+            
+            <tr>
+                
+                <td>@Html.ActionLink(r.DepName, "EmplsNotVoid", "Home", new { DepId = r.DepId, DepName  = r.DepName},null) </td>
+                <td>@r.PeoplesCount</td>
+                <td>@r.Voided</td>
+                <td>@r.PecentVoided</td>
+                
+            </tr>
+        }
+        
+    </table>
+

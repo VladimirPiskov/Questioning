@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="Default Web Site/Questioning_deploy" />
+  <setParameter name="DefaultConnection-Web.config Connection String" value="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-Questioning-20160716071524.mdf;Initial Catalog=aspnet-Questioning-20160716071524;Integrated Security=True" />
+  <setParameter name="CHKCompConnectionString-Web.config Connection String" value="Data Source=cube2005;Initial Catalog=CHKComp;User ID=manager;Password=manager" />
+  <setParameter name="VoitingConnectionString-Web.config Connection String" value="Data Source=s2010;Initial Catalog=Voiting;User ID=v.piskov;Password=Eit160t" />
+</parameters>

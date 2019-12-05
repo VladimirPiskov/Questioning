@@ -1,0 +1,70 @@
+﻿@using Questioning.Models
+@model Questioning.Models.QuestionsModel
+
+@{
+    ViewBag.Title = "Ответьте на вопросы";
+}
+
+
+<h4>Здравствуйте, @Model.Empl.FirstName @Model.Empl.MiddleName</h4>
+<h4>@Html.ActionLink("Это не я!", "Index", "Home")</h4>
+
+
+@if (Model.NotRight)
+{
+    <p style="color:red">@Model.ErrorMessage</p>
+}
+
+<hr />
+@using (Html.BeginForm("Questions", "Home", FormMethod.Post))
+{
+    <input type="hidden" name="EmpId" value="@Model.Empl.Id">
+    <table class="table">
+        <thead>
+            <tr class="caption">
+                <th> </th>
+                @if (Model.AnswerTypes == 1)
+                {
+                    <th style="font-size:large">Пожалуйста, оцените следующие утверждения по шкале от 1 до 5, где 1&nbsp;-&nbsp;абсолютно НЕТ, 5&nbsp;-&nbsp;определенно ДА</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                }
+                else if (Model.AnswerTypes == 2)
+                {
+                    <th style="font-size:large">Пожалуйста, ответьте не следующие вопросы</th>
+                   
+                    <th>Нет</th>
+                    <th>Да</th>
+
+                }
+            </tr>
+        </thead>
+
+        @foreach (CQuestion Q in Model.Questions)
+        {
+            var idx = Q.NumberInAnketa - 1;
+            <tr>
+
+                <td>@Q.NumberInAnketa.</td>
+                <td>@Q.QText</td>
+                <td><input type="radio" name="Questions[@idx]" value="1"></td>
+                @if (Model.AnswerTypes == 1)
+                {
+                    <td><input type="radio" name="Questions[@idx]" value="2"></td>
+                    <td><input type="radio" name="Questions[@idx]" value="3"></td>
+                    <td><input type="radio" name="Questions[@idx]" value="4"></td>
+                }
+                <td><input type="radio" name="Questions[@idx]" value="5"></td>
+            </tr>
+        }
+        <tr>
+            <td></td>
+            <td><input type="submit" class="btn btn-primary btn-lg" style="align-self:stretch" value="Готово" /></td>
+            <td colspan="5"></td>
+        </tr>
+    </table>
+
+}

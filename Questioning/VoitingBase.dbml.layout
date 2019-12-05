@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="VoitingBase">
+  <DataContextMoniker Name="/VoitingBaseDataContext" />
+  <nestedChildShapes>
+    <classShape Id="fba257f0-e8d0-4482-b862-ad77473e9ebe" absoluteBounds="0.75, 4.875, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/VoitingBaseDataContext/QuestQuestions" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6b0ed705-5ded-4707-a720-5f469ce2667e" absoluteBounds="0.76500000000000012, 5.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ac308ebc-79fc-4d2d-a5ef-9a4e5f65617c" absoluteBounds="4.625, 1.375, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/VoitingBaseDataContext/QuestAnswers" />
+      <nestedChildShapes>
+        <elementListCompartment Id="83a2c782-04d4-4b7d-ab05-6a92d900b5af" absoluteBounds="4.64, 1.835, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 5.56814697265625); (5.625 : 5.56814697265625); (5.625 : 4.29970540364583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VoitingBaseDataContext/QuestQuestions/QuestQuestions_QuestAnswers" />
+      <nodes>
+        <classShapeMoniker Id="fba257f0-e8d0-4482-b862-ad77473e9ebe" />
+        <classShapeMoniker Id="ac308ebc-79fc-4d2d-a5ef-9a4e5f65617c" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="9d65bf6b-3eac-4ec6-8ddb-e963bf3800fc" absoluteBounds="7.75, 5.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/VoitingBaseDataContext/QuestSettings" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9e006aaf-a35e-43d2-ace9-8bf57730a229" absoluteBounds="7.765, 6.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="127beb31-e8de-4fa9-b2a9-106992058de0" absoluteBounds="8.375, 1.75, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/VoitingBaseDataContext/QuestGreetings" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1d008770-3978-4ab1-98b7-1f5e9d9c3d6e" absoluteBounds="8.39, 2.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="747df9f0-6ac2-477f-a57a-e72d21022b32" absoluteBounds="2, 1, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/VoitingBaseDataContext/QuestAnketa" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9738c0a3-f323-408e-b78c-a0956f99ef70" absoluteBounds="2.015, 1.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.375 : 2.77089680989583); (2.375 : 4.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VoitingBaseDataContext/QuestAnketa/QuestAnketa_QuestQuestions" />
+      <nodes>
+        <classShapeMoniker Id="747df9f0-6ac2-477f-a57a-e72d21022b32" />
+        <classShapeMoniker Id="fba257f0-e8d0-4482-b862-ad77473e9ebe" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4 : 2.07294840494792); (4.625 : 2.07294840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VoitingBaseDataContext/QuestAnketa/QuestAnketa_QuestAnswers" />
+      <nodes>
+        <classShapeMoniker Id="747df9f0-6ac2-477f-a57a-e72d21022b32" />
+        <classShapeMoniker Id="ac308ebc-79fc-4d2d-a5ef-9a4e5f65617c" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

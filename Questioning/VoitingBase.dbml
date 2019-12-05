@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Voiting" Class="VoitingBaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=s2010;Initial Catalog=Voiting;User ID=v.piskov" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="VoitingConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.QuestQuestions" Member="QuestQuestions">
+    <Type Name="QuestQuestions">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AnketaId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Text" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Association Name="QuestQuestions_QuestAnswers" Member="QuestAnswers" ThisKey="Id" OtherKey="QuestionId" Type="QuestAnswers" />
+      <Association Name="QuestAnketa_QuestQuestions" Member="QuestAnketa" ThisKey="AnketaId" OtherKey="Id" Type="QuestAnketa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.QuestAnswers" Member="QuestAnswers">
+    <Type Name="QuestAnswers">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AnketaId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="QuestionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EmpId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EmpDepNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EmpDepPos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AnswerDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Result" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ip" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CompName" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="Agent" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Association Name="QuestQuestions_QuestAnswers" Member="QuestQuestions" ThisKey="QuestionId" OtherKey="Id" Type="QuestQuestions" IsForeignKey="true" />
+      <Association Name="QuestAnketa_QuestAnswers" Member="QuestAnketa" ThisKey="AnketaId" OtherKey="Id" Type="QuestAnketa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.QuestSettings" Member="QuestSettings">
+    <Type Name="QuestSettings">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ValueInt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ValueStr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.QuestGreetings" Member="QuestGreetings">
+    <Type Name="QuestGreetings">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmpId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Greet1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Greet2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Greet3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AnswerDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IP" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="CompName" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="Agent" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="AnketaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.QuestAnketa" Member="QuestAnketa">
+    <Type Name="QuestAnketa">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AnketaDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NeedGreetings" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AnswerType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="QuestAnketa_QuestQuestions" Member="QuestQuestions" ThisKey="Id" OtherKey="AnketaId" Type="QuestQuestions" />
+      <Association Name="QuestAnketa_QuestAnswers" Member="QuestAnswers" ThisKey="Id" OtherKey="AnketaId" Type="QuestAnswers" />
+    </Type>
+  </Table>
+</Database>

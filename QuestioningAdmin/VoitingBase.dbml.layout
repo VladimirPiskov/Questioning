@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="VoitingBase">
+  <DataContextMoniker Name="/VoitingBaseDataContext" />
+  <nestedChildShapes>
+    <classShape Id="468506dc-0fd6-4181-b79b-aec119a9d4ba" absoluteBounds="6.625, 4.25, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/VoitingBaseDataContext/QuestAnswers" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9e1757b4-409e-4e39-b1d1-be280f53c9a3" absoluteBounds="6.64, 4.71, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="313c5434-6488-4e07-ad63-cbc5ccb32820" absoluteBounds="6, 2.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/VoitingBaseDataContext/QuestSettings" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5d741e11-50c0-43ed-abb0-c392a2730fd0" absoluteBounds="6.015, 2.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
