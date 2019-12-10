@@ -19,6 +19,8 @@
 @using (Html.BeginForm("Questions", "Home", FormMethod.Post))
 {
     <input type="hidden" name="EmpId" value="@Model.Empl.Id">
+    <input type="hidden" name="depId" value="@Model.Dep">
+    <input type="hidden" name="selectedPos" value="@Model.Pos">
     <table class="table">
         <thead>
             <tr class="caption">
@@ -35,7 +37,7 @@
                 else if (Model.AnswerTypes == 2)
                 {
                     <th style="font-size:large">Пожалуйста, ответьте не следующие вопросы</th>
-                   
+
                     <th>Нет</th>
                     <th>Да</th>
 
@@ -50,14 +52,20 @@
 
                 <td>@Q.NumberInAnketa.</td>
                 <td>@Q.QText</td>
-                <td><input type="radio" name="Questions[@idx]" value="1"></td>
+                <td><input type="radio" name="Questions[@idx]" value="1" onclick='$("#jopa_@idx").show()'></td>
+
                 @if (Model.AnswerTypes == 1)
                 {
-                    <td><input type="radio" name="Questions[@idx]" value="2"></td>
-                    <td><input type="radio" name="Questions[@idx]" value="3"></td>
-                    <td><input type="radio" name="Questions[@idx]" value="4"></td>
+                    <td><input type="radio" name="Questions[@idx]" value="2" onclick='$("#jopa_@idx").show()'></td>
+                    <td><input type="radio" name="Questions[@idx]" value="3" onclick='$("#jopa_@idx").show()'></td>
+                    <td><input type="radio" name="Questions[@idx]" value="4" onclick='$("#jopa_@idx").hide()'></td>
                 }
-                <td><input type="radio" name="Questions[@idx]" value="5"></td>
+                <td><input type="radio" name="Questions[@idx]" value="5" onclick='$("#jopa_@idx").hide()'></td>
+            </tr>
+            <tr id="jopa_@idx" style="display:none">
+                <td></td>
+                <td colspan="4">@Html.TextBox($"QuestionsReasons[{idx}]", @Model.Greet1, new { @class = "form-control input", @id = "lg", @placeholder = "Напишите, пожалуйста, причину данной оценки" })</td>
+
             </tr>
         }
         <tr>

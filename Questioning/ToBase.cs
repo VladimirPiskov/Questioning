@@ -89,6 +89,21 @@ namespace Questioning
             }
         }
 
+        private List<int> depList = null;
+
+        private List<int> GetdepList()
+        {
+            return new List<int>();
+        }
+        public bool DepCorrect(int dep)
+        {
+            if (depList == null)
+            {
+                depList = GetdepList();
+            }
+            return true;
+        }
+
 
         public bool IsVoiting(int EmpId)
         {
@@ -106,14 +121,14 @@ namespace Questioning
             Err = "";
             try
             {
-                if (_VoitingBaseDataContext.QuestGreetings.Any(a => a.EmpId == Res.Empl.Id && a.AnketaId==AnketaId))
+                if ((Res.Empl.Id > 0) && (_VoitingBaseDataContext.QuestGreetings.Any(a => a.EmpId == Res.Empl.Id && a.AnketaId==AnketaId)))
                 {
                     return true;
                 }
 
                 QuestGreetings qg = new QuestGreetings()
                 {
-                    Greet1 = Res.Greet1.TrimEnd(),
+                    Greet1 = Res.Greet1.TrimEnd(),  
                     Greet2 = Res.Greet2.TrimEnd(),
                     Greet3 = Res.Greet3.TrimEnd(),
                     EmpId = Res.Empl.Id,
@@ -121,7 +136,11 @@ namespace Questioning
                     CompName = Res.CompName,
                     IP = Res.IpAddress,
                     Agent = Res.UserAgent,
-                    AnketaId = AnketaId
+                    AnketaId = AnketaId,
+                    DepId = Res.Dep,
+                    PosId =Res.Pos,
+                    GuidId =Res.GuidId
+                    
 
                 };
                 _VoitingBaseDataContext.QuestGreetings.InsertOnSubmit(qg);
@@ -146,16 +165,19 @@ namespace Questioning
         }
 
 
-        public bool InsertResult(QuestionsModel Res)
+        public bool InsertResult(QuestionsModel Res, out string  guid)
         {
+            Guid g = Guid.NewGuid();
+            guid = g.ToString();
             try
             {
-
-                if (_VoitingBaseDataContext.QuestAnswers.Where(a => a.EmpId == Res.Empl.Id && a.AnketaId== AnketaId).Count() > 0)
+                
+                if ((Res.Empl.Id>0) && (_VoitingBaseDataContext.QuestAnswers.Where(a => a.EmpId == Res.Empl.Id && a.AnketaId== AnketaId).Count() > 0))
                 {
                     return true;
                 }
 
+                
                 foreach (CQuestion Q in Res.Questions)
                 {
                     QuestAnswers Qa = new QuestAnswers()
@@ -170,7 +192,9 @@ namespace Questioning
                         Result = Q.Result,
                         Ip = Res.IpAddress,
                         CompName = Res.CompName,
-                        Agent = Res.UserAgent
+                        Agent = Res.UserAgent,
+                        Comment = Q.Comment,
+                        SessionId = guid
                     };
                     _VoitingBaseDataContext.QuestAnswers.InsertOnSubmit(Qa);
                 }

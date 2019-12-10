@@ -1,5 +1,6 @@
-﻿@using Questioning.Models
-@model SetEmployeeModel 
+﻿@using Questioning.Models;
+
+@model Questioning.Models.SetEmployeeModel
 @{
     ViewBag.Title = "Укажите ваш номер либо номер подраздения и должность";
 }
@@ -13,7 +14,6 @@
 
 
     @using (Html.BeginForm("Questions", "Home", FormMethod.Get))
-
     {
 
         <div class="form-group" style="margin-bottom:60px">
@@ -23,17 +23,53 @@
             <div class="col-xs-2 col-sm-2" style="min-width:120px">
                 <input type="text" class="form-control input-lg pull-right" style="text-align:right" name="Num" maxlength="5" value="0" />
             </div>
-
-
-
-            <div class="col-xs-3 col-sm-3">
-                <input type="submit" class="btn btn-default" value="Готово" />
+            <div>
+                <label></label>
             </div>
-           
+            <div class="col-xs-3 col-sm-3">
+                <input type="hidden" name="anon" value="false" />
+                <input type="submit" class="btn btn-primary btn-default" value="Готово" />
+            </div>
+
+        </div>
+    }
+
+    <div>
+        <label for="Num">или</label>
+    </div>
+
+    @using (Html.BeginForm("Questions", "Home", FormMethod.Get))
+    {
+
+        <div class="form-group" style="margin-bottom:60px">
+            <div>
+                <label for="depId">Номер Вашего подразделения:</label>
+            </div>
+            <div class="col-xs-2 col-sm-2" style="min-width:120px">
+                <input type="text" class="form-control input-lg pull-right" style="text-align:right" name="depId" maxlength="5" value="0" />
+            </div>
+            <div>
+                <label></label>
+            </div>
+            <div>
+
+                <label for="selectedPos">Тип должности:</label>
+            </div>
+            <div class="col-xs-3 col-sm-3" style="min-width:120px">
+                @Html.DropDownList("selectedPos", Model.Poss)
+            </div>
+            <div>
+                <label></label>
+            </div>
+            <div class="col-xs-4 col-sm-4">
+                <input type="hidden" name="anon" value="true" />
+                <input type="submit" class="btn btn-primary btn-default " value="Я Аноним" />
+            </div>
+
         </div>
     }
 
 
-   
+
 
 </div>

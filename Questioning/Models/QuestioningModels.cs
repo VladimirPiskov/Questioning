@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 
 using System.ComponentModel.DataAnnotations;
-
+using System.Web.Mvc;
+using System.Collections;
 
 namespace Questioning.Models
 {
@@ -12,18 +13,22 @@ namespace Questioning.Models
     {
         public SetEmployeeModel()
         { }
-       
 
-       
+
+
         public int Num { set; get; }
 
-        public string  Name { set; get; }
+        public string Name { set; get; }
 
         public int DepId { set; get; }
 
         public int PosId { set; get; }
+        public  string SelectedPos { set; get; }
 
         public string ErrorMsg { set; get; }
+
+        static public List<string> PosItems = new List<string> () { "Зал", "Стойка", "Кухня", "Остальные" };
+        public SelectList Poss = new SelectList(PosItems);
 
     }
 
@@ -62,6 +67,7 @@ namespace Questioning.Models
         public CAnswer Answer { set; get; }
        
         public int Result { set; get; }
+        public string Comment { set; get; }
     }
 
     public class QuestionsModel
@@ -73,10 +79,13 @@ namespace Questioning.Models
         public string Greet3 { set; get; }
         public CEmployee Empl { set; get; }
         public bool NotRight { set; get; }
+        public int  Dep { set; get; }
+        public int Pos { set; get; }
         public string ErrorMessage { set; get; }
         public string IpAddress { set; get; }
         public string CompName { set; get; }
         public string UserAgent { set; get; }
+        public string GuidId { set; get; }
         public int AnswerTypes { set; get; }
     }
 

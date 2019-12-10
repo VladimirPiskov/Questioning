@@ -21,11 +21,26 @@ namespace Questioning.Controllers
         }
 
         [HttpPost]
-        public ActionResult QGreetings(int EmpId, string Greet1, string Greet2, string Greet3)
+        public ActionResult QGreetings(int EmpId, int depId, int selectedPos, string Greet1, string Greet2, string Greet3, string guidId)
         {
             DataBaseManager db = new DataBaseManager();
             Models.QuestionsModel mod = new Models.QuestionsModel();
-            mod.Empl = db.GetEmployeeById(EmpId);
+            if (EmpId > 0)
+            {
+                mod.Empl = db.GetEmployeeById(EmpId);
+            }
+            else
+            {
+                mod.Empl = new CEmployee()
+                {
+                    DepId = depId,
+                    Id = -1,
+                    FirstName = "Аноним",
+                    PosId = selectedPos
+                };
+                mod.Dep = depId;
+                mod.Pos = selectedPos;
+            }
             var s = Request.Form;
             mod.IpAddress = Request.UserHostAddress;
             mod.CompName = Request.UserHostName;
@@ -33,6 +48,7 @@ namespace Questioning.Controllers
             mod.Greet1 = Greet1;
             mod.Greet2 = Greet2;
             mod.Greet3 = Greet3;
+            mod.GuidId = guidId;
 
             string Err = "";
             if (db.InsertResultGreet(mod, out Err))
@@ -52,15 +68,29 @@ namespace Questioning.Controllers
 
 
         [HttpPost]
-        public ActionResult Questions(int EmpId, List<string> Questions)
+        public ActionResult Questions(int EmpId,  int depId, int selectedPos,List<string> Questions, List<string> QuestionsReasons)
       //  public ActionResult Questions(List<CQuestion> Questions)
         {
             //string s = Q1;
             var s = Request.Form;
             DataBaseManager db = new DataBaseManager();
             Models.QuestionsModel mod = new Models.QuestionsModel();
-
-            mod.Empl = db.GetEmployeeById(EmpId);
+            if (EmpId > 0)
+            {
+                mod.Empl = db.GetEmployeeById(EmpId);
+            }
+            else
+            {
+                mod.Empl = new CEmployee()
+                {
+                    DepId = depId,
+                    Id = -1,
+                    FirstName = "Аноним",
+                    PosId = selectedPos
+                };
+            }
+            mod.Dep = depId;
+            mod.Pos = selectedPos;
             //mod.Questions = db.GetQuestionsByAnketaId(Questioning.DataBaseManager.CurentAncetaId);
             mod.Questions = db.GetQuestionsByAnketaId();
             mod.AnswerTypes = db.AnswerType();
@@ -75,17 +105,19 @@ namespace Questioning.Controllers
                 for (int i = 0; i < mod.Questions.Count; i++)
                 {
                     mod.Questions[i].Result = Convert.ToInt32(Questions[i]);
+                    mod.Questions[i].Comment = QuestionsReasons[i];
                 }
                 mod.IpAddress = Request.UserHostAddress;
                 mod.CompName = Request.UserHostName;
                 mod.UserAgent = Request.UserAgent;
-                if (db.InsertResult(mod))
+                string g = "";
+                if (db.InsertResult(mod,out g))
                 {
                     //return QSucseess();
-
+                    
                     if (db.NeedGreetings())
                     {
-                        return QGreetings(EmpId);
+                        return QGreetings(EmpId,depId,selectedPos,g);
                     }
                     else
                     {
@@ -101,68 +133,117 @@ namespace Questioning.Controllers
             return View(mod);
 
         }
-        public ActionResult QGreetings(int EmpId)
+        public ActionResult QGreetings(int EmpId, int depId, int selectedPos,string guidId)
         {
-
-            
-
             DataBaseManager db = new DataBaseManager();
-            
-            if (db.IsVoiting2(EmpId))
+            Models.QuestionsModel mod = new Models.QuestionsModel()
             {
-                SetEmployeeModel m = new SetEmployeeModel();
-                m.ErrorMsg = "Вы уже заполнили анкету";
-
-                return View("Index", m);
-            }
-            Models.QuestionsModel mod = new Models.QuestionsModel();
-            mod.Empl = db.GetEmployeeById(EmpId);
-            if (mod.Empl == null)
+                GuidId = guidId
+            };
+            if (EmpId > 0)
             {
-                SetEmployeeModel m = new SetEmployeeModel();
-                m.ErrorMsg = "Неверный код";
+                if (db.IsVoiting2(EmpId))
+                {
+                    SetEmployeeModel m = new SetEmployeeModel();
+                    m.ErrorMsg = "Вы уже заполнили анкету";
 
-                return View("Index", m);
+                    return View("Index", m);
+                }
+                
+                mod.Empl = db.GetEmployeeById(EmpId);
+                if (mod.Empl == null)
+                {
+                    SetEmployeeModel m = new SetEmployeeModel();
+                    m.ErrorMsg = "Неверный код";
+
+                    return View("Index", m);
+                }
+                mod.NotRight = false;
             }
-            mod.NotRight = false;
+            else
+            {
+                mod.Empl = new CEmployee()
+                {
+                    DepId = depId,
+                    Id = -1,
+                    FirstName = "Аноним",
+                    PosId = selectedPos
+                };
+                mod.Dep = depId;
+                mod.Pos = selectedPos;
+                mod.NotRight = false;
+            }
             return View("QGreetings", mod);
         }
 
-        public ActionResult Questions(string Num)
+        public ActionResult Questions(string Num, bool anon, string depId, string selectedPos)
         {
-            int mNum = 0;
-            if (!Int32.TryParse(Num,out mNum))
-            {
-                SetEmployeeModel m = new SetEmployeeModel();
-                m.ErrorMsg = "Ведите корректный код";
-
-                return View("Index", m);
-            }
-
-
-        //    return QGreetings(mNum);
-          
             DataBaseManager db = new DataBaseManager();
-
-            if (db.IsVoiting(mNum))
+            int mNum = 0;
+            int depNum = 0;
+            if (anon)
             {
-                SetEmployeeModel m = new SetEmployeeModel();
-                m.ErrorMsg = "Вы уже заполнили анкету";
+                
+                if (!Int32.TryParse(depId, out depNum))
+                {
+                    SetEmployeeModel m = new SetEmployeeModel();
+                    m.ErrorMsg = "Ведите номер подразделения";
 
-                return View("Index", m);
+                    return View("Index", m);
+                }
+                if (!db.DepCorrect(depNum))
+                {
+                    SetEmployeeModel m = new SetEmployeeModel();
+                    m.ErrorMsg = "Некорректный номер подразделения";
+                    return View("Index", m);
+                }
+            }
+            else
+            {
+                if (!Int32.TryParse(Num, out mNum))
+                {
+                    SetEmployeeModel m = new SetEmployeeModel();
+                    m.ErrorMsg = "Ведите корректный код";
+                    return View("Index", m);
+                }
+
+                if (db.IsVoiting(mNum))
+                {
+                    SetEmployeeModel m = new SetEmployeeModel();
+                    m.ErrorMsg = "Вы уже заполнили анкету";
+
+                    return View("Index", m);
+                }
             }
 
             Models.QuestionsModel mod = new Models.QuestionsModel();
 
 
-
-            mod.Empl = db.GetEmployeeById(mNum);
-            if (mod.Empl == null)
+            
+            //mod.Dep = depNum;
+            //mod.Pos = posId;
+            if (anon)
             {
-                SetEmployeeModel m = new SetEmployeeModel();
-                m.ErrorMsg = "Неверный код";
-                
-                return View("Index",m);
+                mod.Empl = new CEmployee()
+                {
+                    DepId = depNum,
+                    Id = -1,
+                    FirstName = "Аноним",
+                    PosId = Convert.ToInt32(SetEmployeeModel.PosItems.IndexOf(selectedPos))
+                };
+                mod.Pos = Convert.ToInt32(SetEmployeeModel.PosItems.IndexOf(selectedPos));
+                mod.Dep = depNum;
+            }
+            else
+            {
+                mod.Empl = db.GetEmployeeById(mNum);
+                if (!anon && mod.Empl == null)
+                {
+                    SetEmployeeModel m = new SetEmployeeModel();
+                    m.ErrorMsg = "Неверный код";
+
+                    return View("Index", m);
+                }
             }
             mod.Questions = db.GetQuestionsByAnketaId();
             mod.NotRight = false;
