@@ -14,7 +14,7 @@ namespace QuestioningAdmin
         public ToBase()
         {
             //_StaffBaseDataContext = new StaffBaseDataContext();
-            _VoitingBaseDataContext = new VoitingBaseDataContext();
+            _VoitingBaseDataContext = new VoitingBaseDataContext(@"Data Source=s2010;Initial Catalog=Voiting;User ID=v.piskov;Password=Eit160t");
         }
         private VoitingBaseDataContext _VoitingBaseDataContext;
 
@@ -37,7 +37,14 @@ namespace QuestioningAdmin
             return _VoitingBaseDataContext.QuestAnswers.Where(a=>a.AnketaId.Value == AnketaId).Select(c => (c.EmpId.Value)).Distinct().ToList();
         }
 
-        string StaffConnStr = "Driver={Progress OpenEdge 10.1B driver};HOST=web;DB=staff;UID=sysprogress;PWD=progress;PORT=2520;";
+
+        public int GetVoitingByDep(int dep)
+        {
+            return _VoitingBaseDataContext.QuestAnswers.Where(a => a.AnketaId.Value == AnketaId && a.EmpId==-1 && a.EmpDepNum==dep).Count()/ 13;
+        }
+
+        string StaffConnStr = "Driver={Progress OpenEdge 10.2B driver};HOST=web;DB=staff;UID=sysprogress;PWD=progress;PORT=2520;";
+
         internal List<CEmployee> GetAllEmployees()
         {
             List<CEmployee> Tmp = new List<CEmployee>();

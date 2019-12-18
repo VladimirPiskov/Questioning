@@ -28,7 +28,7 @@ namespace QuestioningAdmin.Controllers
                 res.DepName = dep.Name;
                 res.PeoplesCount = empls.Where(a => a.DepId == dep.Number ).Count();
               //res.PeoplesCount = empls.Where(a => a.DepId == dep.Number && (a.PosId==2 || a.PosId == 4 || a.PosId == 8)).Count();
-                res.Voided = empls.Where(a => a.DepId == dep.Number && Voiting.Contains(a.Id)).Count();
+                res.Voided = empls.Where(a => a.DepId == dep.Number && Voiting.Contains(a.Id)).Count()+b.GetVoitingByDep(dep.Number);
                 model.Res.Add(res);
             }
             return View(model);
