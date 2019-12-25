@@ -2,35 +2,16 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.375, 8.5" name="QData">
   <DataContextMoniker Name="/QDataDataContext" />
   <nestedChildShapes>
-    <classShape Id="dc10bc5d-86a1-49e4-b477-dbef62d58e5e" absoluteBounds="3.875, 0.625, 2, 2.9247054036458331">
-      <DataClassMoniker Name="/QDataDataContext/QuestAnswers" />
-      <nestedChildShapes>
-        <elementListCompartment Id="310f517c-0641-465e-a9c0-9a96a61dde1b" absoluteBounds="3.8899999999999997, 1.085, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="17eed173-da0f-453a-8a96-484386dbdacd" absoluteBounds="8, 1.625, 2, 1.3862939453125">
       <DataClassMoniker Name="/QDataDataContext/QuestQuestions" />
       <nestedChildShapes>
         <elementListCompartment Id="f50abdf9-a96a-413e-b64d-938f2aed9f87" absoluteBounds="8.015, 2.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8 : 2.31814697265625); (5.875 : 2.31814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/QDataDataContext/QuestQuestions/QuestQuestions_QuestAnswers" />
-      <nodes>
-        <classShapeMoniker Id="17eed173-da0f-453a-8a96-484386dbdacd" />
-        <classShapeMoniker Id="dc10bc5d-86a1-49e4-b477-dbef62d58e5e" />
-      </nodes>
-    </associationConnector>
     <classShape Id="3af3729b-6851-44ff-b629-d5eef3bc01e7" absoluteBounds="4.875, 4.625, 2, 1.5785953776041666">
       <DataClassMoniker Name="/QDataDataContext/QuestSettings" />
       <nestedChildShapes>
         <elementListCompartment Id="9772c0ae-d1ab-4bf1-b8ab-f4d89818c740" absoluteBounds="4.89, 5.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="6e94836f-b61c-4c98-89e8-65a3d71dcb19" absoluteBounds="1.375, 4, 2, 2.7324039713541666">
-      <DataClassMoniker Name="/QDataDataContext/QuestGreetings" />
-      <nestedChildShapes>
-        <elementListCompartment Id="237070ee-fb22-4c80-8710-307171e24866" absoluteBounds="1.3899999999999997, 4.46, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="c0622431-b99e-476e-82cf-d17419b0e139" absoluteBounds="10.125, 3.625, 2, 1.7708968098958331">
@@ -39,13 +20,6 @@
         <elementListCompartment Id="a828bed8-df15-4393-95b8-589171944a4e" absoluteBounds="10.14, 4.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(10.125 : 4.09375); (4.34375 : 4.09375); (4.34375 : 3.54970540364583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/QDataDataContext/QuestAnketa/QuestAnketa_QuestAnswers" />
-      <nodes>
-        <classShapeMoniker Id="c0622431-b99e-476e-82cf-d17419b0e139" />
-        <classShapeMoniker Id="dc10bc5d-86a1-49e4-b477-dbef62d58e5e" />
-      </nodes>
-    </associationConnector>
     <associationConnector edgePoints="[(10.125 : 3.625); (10 : 3.0112939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/QDataDataContext/QuestAnketa/QuestAnketa_QuestQuestions" />
       <nodes>
@@ -53,5 +27,31 @@
         <classShapeMoniker Id="17eed173-da0f-453a-8a96-484386dbdacd" />
       </nodes>
     </associationConnector>
+    <classShape Id="438e6302-dd71-4a1b-a405-a92b0cd05968" absoluteBounds="4.375, 1, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/QDataDataContext/QuestAnswers" />
+      <nestedChildShapes>
+        <elementListCompartment Id="99117a50-3589-4e28-8045-6c503e8de985" absoluteBounds="4.39, 1.46, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(10.125 : 3.99840663411458); (6.375 : 3.99840663411458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/QDataDataContext/QuestAnketa/QuestAnketa_QuestAnswers" />
+      <nodes>
+        <classShapeMoniker Id="c0622431-b99e-476e-82cf-d17419b0e139" />
+        <classShapeMoniker Id="438e6302-dd71-4a1b-a405-a92b0cd05968" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8 : 2.31814697265625); (6.375 : 2.31814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/QDataDataContext/QuestQuestions/QuestQuestions_QuestAnswers" />
+      <nodes>
+        <classShapeMoniker Id="17eed173-da0f-453a-8a96-484386dbdacd" />
+        <classShapeMoniker Id="438e6302-dd71-4a1b-a405-a92b0cd05968" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="db1b02d9-5045-4f0d-ba5b-2d0f79ce0e70" absoluteBounds="1.75, 0.5, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/QDataDataContext/QuestGreetings" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6ca95b6e-73e0-465f-b275-a02d90b0592d" absoluteBounds="1.7649999999999997, 0.96, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

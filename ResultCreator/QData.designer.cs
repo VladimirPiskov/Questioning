@@ -30,21 +30,21 @@ namespace ResultCreator
 		
     #region Определения метода расширяемости
     partial void OnCreated();
-    partial void InsertQuestAnswers(QuestAnswers instance);
-    partial void UpdateQuestAnswers(QuestAnswers instance);
-    partial void DeleteQuestAnswers(QuestAnswers instance);
     partial void InsertQuestQuestions(QuestQuestions instance);
     partial void UpdateQuestQuestions(QuestQuestions instance);
     partial void DeleteQuestQuestions(QuestQuestions instance);
     partial void InsertQuestSettings(QuestSettings instance);
     partial void UpdateQuestSettings(QuestSettings instance);
     partial void DeleteQuestSettings(QuestSettings instance);
-    partial void InsertQuestGreetings(QuestGreetings instance);
-    partial void UpdateQuestGreetings(QuestGreetings instance);
-    partial void DeleteQuestGreetings(QuestGreetings instance);
     partial void InsertQuestAnketa(QuestAnketa instance);
     partial void UpdateQuestAnketa(QuestAnketa instance);
     partial void DeleteQuestAnketa(QuestAnketa instance);
+    partial void InsertQuestAnswers(QuestAnswers instance);
+    partial void UpdateQuestAnswers(QuestAnswers instance);
+    partial void DeleteQuestAnswers(QuestAnswers instance);
+    partial void InsertQuestGreetings(QuestGreetings instance);
+    partial void UpdateQuestGreetings(QuestGreetings instance);
+    partial void DeleteQuestGreetings(QuestGreetings instance);
     #endregion
 		
 		public QDataDataContext() : 
@@ -77,14 +77,6 @@ namespace ResultCreator
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<QuestAnswers> QuestAnswers
-		{
-			get
-			{
-				return this.GetTable<QuestAnswers>();
-			}
-		}
-		
 		public System.Data.Linq.Table<QuestQuestions> QuestQuestions
 		{
 			get
@@ -101,14 +93,6 @@ namespace ResultCreator
 			}
 		}
 		
-		public System.Data.Linq.Table<QuestGreetings> QuestGreetings
-		{
-			get
-			{
-				return this.GetTable<QuestGreetings>();
-			}
-		}
-		
 		public System.Data.Linq.Table<QuestAnketa> QuestAnketa
 		{
 			get
@@ -116,388 +100,20 @@ namespace ResultCreator
 				return this.GetTable<QuestAnketa>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.QuestAnswers")]
-	public partial class QuestAnswers : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.Nullable<int> _AnketaId;
-		
-		private System.Nullable<int> _QuestionId;
-		
-		private System.Nullable<int> _EmpId;
-		
-		private System.Nullable<int> _EmpDepNum;
-		
-		private System.Nullable<int> _EmpDepPos;
-		
-		private System.Nullable<System.DateTime> _AnswerDate;
-		
-		private System.Nullable<int> _Result;
-		
-		private string _Ip;
-		
-		private string _CompName;
-		
-		private string _Agent;
-		
-		private EntityRef<QuestQuestions> _QuestQuestions;
-		
-		private EntityRef<QuestAnketa> _QuestAnketa;
-		
-    #region Определения метода расширяемости
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnAnketaIdChanging(System.Nullable<int> value);
-    partial void OnAnketaIdChanged();
-    partial void OnQuestionIdChanging(System.Nullable<int> value);
-    partial void OnQuestionIdChanged();
-    partial void OnEmpIdChanging(System.Nullable<int> value);
-    partial void OnEmpIdChanged();
-    partial void OnEmpDepNumChanging(System.Nullable<int> value);
-    partial void OnEmpDepNumChanged();
-    partial void OnEmpDepPosChanging(System.Nullable<int> value);
-    partial void OnEmpDepPosChanged();
-    partial void OnAnswerDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnAnswerDateChanged();
-    partial void OnResultChanging(System.Nullable<int> value);
-    partial void OnResultChanged();
-    partial void OnIpChanging(string value);
-    partial void OnIpChanged();
-    partial void OnCompNameChanging(string value);
-    partial void OnCompNameChanged();
-    partial void OnAgentChanging(string value);
-    partial void OnAgentChanged();
-    #endregion
-		
-		public QuestAnswers()
-		{
-			this._QuestQuestions = default(EntityRef<QuestQuestions>);
-			this._QuestAnketa = default(EntityRef<QuestAnketa>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		public System.Data.Linq.Table<QuestAnswers> QuestAnswers
 		{
 			get
 			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
+				return this.GetTable<QuestAnswers>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnketaId", DbType="Int")]
-		public System.Nullable<int> AnketaId
+		public System.Data.Linq.Table<QuestGreetings> QuestGreetings
 		{
 			get
 			{
-				return this._AnketaId;
-			}
-			set
-			{
-				if ((this._AnketaId != value))
-				{
-					if (this._QuestAnketa.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnAnketaIdChanging(value);
-					this.SendPropertyChanging();
-					this._AnketaId = value;
-					this.SendPropertyChanged("AnketaId");
-					this.OnAnketaIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionId", DbType="Int")]
-		public System.Nullable<int> QuestionId
-		{
-			get
-			{
-				return this._QuestionId;
-			}
-			set
-			{
-				if ((this._QuestionId != value))
-				{
-					if (this._QuestQuestions.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnQuestionIdChanging(value);
-					this.SendPropertyChanging();
-					this._QuestionId = value;
-					this.SendPropertyChanged("QuestionId");
-					this.OnQuestionIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmpId", DbType="Int")]
-		public System.Nullable<int> EmpId
-		{
-			get
-			{
-				return this._EmpId;
-			}
-			set
-			{
-				if ((this._EmpId != value))
-				{
-					this.OnEmpIdChanging(value);
-					this.SendPropertyChanging();
-					this._EmpId = value;
-					this.SendPropertyChanged("EmpId");
-					this.OnEmpIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmpDepNum", DbType="Int")]
-		public System.Nullable<int> EmpDepNum
-		{
-			get
-			{
-				return this._EmpDepNum;
-			}
-			set
-			{
-				if ((this._EmpDepNum != value))
-				{
-					this.OnEmpDepNumChanging(value);
-					this.SendPropertyChanging();
-					this._EmpDepNum = value;
-					this.SendPropertyChanged("EmpDepNum");
-					this.OnEmpDepNumChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmpDepPos", DbType="Int")]
-		public System.Nullable<int> EmpDepPos
-		{
-			get
-			{
-				return this._EmpDepPos;
-			}
-			set
-			{
-				if ((this._EmpDepPos != value))
-				{
-					this.OnEmpDepPosChanging(value);
-					this.SendPropertyChanging();
-					this._EmpDepPos = value;
-					this.SendPropertyChanged("EmpDepPos");
-					this.OnEmpDepPosChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnswerDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> AnswerDate
-		{
-			get
-			{
-				return this._AnswerDate;
-			}
-			set
-			{
-				if ((this._AnswerDate != value))
-				{
-					this.OnAnswerDateChanging(value);
-					this.SendPropertyChanging();
-					this._AnswerDate = value;
-					this.SendPropertyChanged("AnswerDate");
-					this.OnAnswerDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Result", DbType="Int")]
-		public System.Nullable<int> Result
-		{
-			get
-			{
-				return this._Result;
-			}
-			set
-			{
-				if ((this._Result != value))
-				{
-					this.OnResultChanging(value);
-					this.SendPropertyChanging();
-					this._Result = value;
-					this.SendPropertyChanged("Result");
-					this.OnResultChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ip", DbType="NVarChar(50)")]
-		public string Ip
-		{
-			get
-			{
-				return this._Ip;
-			}
-			set
-			{
-				if ((this._Ip != value))
-				{
-					this.OnIpChanging(value);
-					this.SendPropertyChanging();
-					this._Ip = value;
-					this.SendPropertyChanged("Ip");
-					this.OnIpChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompName", DbType="NChar(255)")]
-		public string CompName
-		{
-			get
-			{
-				return this._CompName;
-			}
-			set
-			{
-				if ((this._CompName != value))
-				{
-					this.OnCompNameChanging(value);
-					this.SendPropertyChanging();
-					this._CompName = value;
-					this.SendPropertyChanged("CompName");
-					this.OnCompNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Agent", DbType="NChar(255)")]
-		public string Agent
-		{
-			get
-			{
-				return this._Agent;
-			}
-			set
-			{
-				if ((this._Agent != value))
-				{
-					this.OnAgentChanging(value);
-					this.SendPropertyChanging();
-					this._Agent = value;
-					this.SendPropertyChanged("Agent");
-					this.OnAgentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QuestQuestions_QuestAnswers", Storage="_QuestQuestions", ThisKey="QuestionId", OtherKey="Id", IsForeignKey=true)]
-		public QuestQuestions QuestQuestions
-		{
-			get
-			{
-				return this._QuestQuestions.Entity;
-			}
-			set
-			{
-				QuestQuestions previousValue = this._QuestQuestions.Entity;
-				if (((previousValue != value) 
-							|| (this._QuestQuestions.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._QuestQuestions.Entity = null;
-						previousValue.QuestAnswers.Remove(this);
-					}
-					this._QuestQuestions.Entity = value;
-					if ((value != null))
-					{
-						value.QuestAnswers.Add(this);
-						this._QuestionId = value.Id;
-					}
-					else
-					{
-						this._QuestionId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("QuestQuestions");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QuestAnketa_QuestAnswers", Storage="_QuestAnketa", ThisKey="AnketaId", OtherKey="Id", IsForeignKey=true)]
-		public QuestAnketa QuestAnketa
-		{
-			get
-			{
-				return this._QuestAnketa.Entity;
-			}
-			set
-			{
-				QuestAnketa previousValue = this._QuestAnketa.Entity;
-				if (((previousValue != value) 
-							|| (this._QuestAnketa.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._QuestAnketa.Entity = null;
-						previousValue.QuestAnswers.Remove(this);
-					}
-					this._QuestAnketa.Entity = value;
-					if ((value != null))
-					{
-						value.QuestAnswers.Add(this);
-						this._AnketaId = value.Id;
-					}
-					else
-					{
-						this._AnketaId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("QuestAnketa");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<QuestGreetings>();
 			}
 		}
 	}
@@ -815,6 +431,652 @@ namespace ResultCreator
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.QuestAnketa")]
+	public partial class QuestAnketa : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<System.DateTime> _AnketaDate;
+		
+		private string _Name;
+		
+		private bool _NeedGreetings;
+		
+		private int _AnswerType;
+		
+		private EntitySet<QuestQuestions> _QuestQuestions;
+		
+		private EntitySet<QuestAnswers> _QuestAnswers;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnAnketaDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnAnketaDateChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnNeedGreetingsChanging(bool value);
+    partial void OnNeedGreetingsChanged();
+    partial void OnAnswerTypeChanging(int value);
+    partial void OnAnswerTypeChanged();
+    #endregion
+		
+		public QuestAnketa()
+		{
+			this._QuestQuestions = new EntitySet<QuestQuestions>(new Action<QuestQuestions>(this.attach_QuestQuestions), new Action<QuestQuestions>(this.detach_QuestQuestions));
+			this._QuestAnswers = new EntitySet<QuestAnswers>(new Action<QuestAnswers>(this.attach_QuestAnswers), new Action<QuestAnswers>(this.detach_QuestAnswers));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnketaDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> AnketaDate
+		{
+			get
+			{
+				return this._AnketaDate;
+			}
+			set
+			{
+				if ((this._AnketaDate != value))
+				{
+					this.OnAnketaDateChanging(value);
+					this.SendPropertyChanging();
+					this._AnketaDate = value;
+					this.SendPropertyChanged("AnketaDate");
+					this.OnAnketaDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NeedGreetings", DbType="Bit NOT NULL")]
+		public bool NeedGreetings
+		{
+			get
+			{
+				return this._NeedGreetings;
+			}
+			set
+			{
+				if ((this._NeedGreetings != value))
+				{
+					this.OnNeedGreetingsChanging(value);
+					this.SendPropertyChanging();
+					this._NeedGreetings = value;
+					this.SendPropertyChanged("NeedGreetings");
+					this.OnNeedGreetingsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnswerType", DbType="Int NOT NULL")]
+		public int AnswerType
+		{
+			get
+			{
+				return this._AnswerType;
+			}
+			set
+			{
+				if ((this._AnswerType != value))
+				{
+					this.OnAnswerTypeChanging(value);
+					this.SendPropertyChanging();
+					this._AnswerType = value;
+					this.SendPropertyChanged("AnswerType");
+					this.OnAnswerTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QuestAnketa_QuestQuestions", Storage="_QuestQuestions", ThisKey="Id", OtherKey="AnketaId")]
+		public EntitySet<QuestQuestions> QuestQuestions
+		{
+			get
+			{
+				return this._QuestQuestions;
+			}
+			set
+			{
+				this._QuestQuestions.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QuestAnketa_QuestAnswers", Storage="_QuestAnswers", ThisKey="Id", OtherKey="AnketaId")]
+		public EntitySet<QuestAnswers> QuestAnswers
+		{
+			get
+			{
+				return this._QuestAnswers;
+			}
+			set
+			{
+				this._QuestAnswers.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_QuestQuestions(QuestQuestions entity)
+		{
+			this.SendPropertyChanging();
+			entity.QuestAnketa = this;
+		}
+		
+		private void detach_QuestQuestions(QuestQuestions entity)
+		{
+			this.SendPropertyChanging();
+			entity.QuestAnketa = null;
+		}
+		
+		private void attach_QuestAnswers(QuestAnswers entity)
+		{
+			this.SendPropertyChanging();
+			entity.QuestAnketa = this;
+		}
+		
+		private void detach_QuestAnswers(QuestAnswers entity)
+		{
+			this.SendPropertyChanging();
+			entity.QuestAnketa = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.QuestAnswers")]
+	public partial class QuestAnswers : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _AnketaId;
+		
+		private System.Nullable<int> _QuestionId;
+		
+		private System.Nullable<int> _EmpId;
+		
+		private System.Nullable<int> _EmpDepNum;
+		
+		private System.Nullable<int> _EmpDepPos;
+		
+		private System.Nullable<System.DateTime> _AnswerDate;
+		
+		private System.Nullable<int> _Result;
+		
+		private string _Ip;
+		
+		private string _CompName;
+		
+		private string _Agent;
+		
+		private string _Comment;
+		
+		private string _SessionId;
+		
+		private EntityRef<QuestAnketa> _QuestAnketa;
+		
+		private EntityRef<QuestQuestions> _QuestQuestions;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnAnketaIdChanging(System.Nullable<int> value);
+    partial void OnAnketaIdChanged();
+    partial void OnQuestionIdChanging(System.Nullable<int> value);
+    partial void OnQuestionIdChanged();
+    partial void OnEmpIdChanging(System.Nullable<int> value);
+    partial void OnEmpIdChanged();
+    partial void OnEmpDepNumChanging(System.Nullable<int> value);
+    partial void OnEmpDepNumChanged();
+    partial void OnEmpDepPosChanging(System.Nullable<int> value);
+    partial void OnEmpDepPosChanged();
+    partial void OnAnswerDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnAnswerDateChanged();
+    partial void OnResultChanging(System.Nullable<int> value);
+    partial void OnResultChanged();
+    partial void OnIpChanging(string value);
+    partial void OnIpChanged();
+    partial void OnCompNameChanging(string value);
+    partial void OnCompNameChanged();
+    partial void OnAgentChanging(string value);
+    partial void OnAgentChanged();
+    partial void OnCommentChanging(string value);
+    partial void OnCommentChanged();
+    partial void OnSessionIdChanging(string value);
+    partial void OnSessionIdChanged();
+    #endregion
+		
+		public QuestAnswers()
+		{
+			this._QuestAnketa = default(EntityRef<QuestAnketa>);
+			this._QuestQuestions = default(EntityRef<QuestQuestions>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnketaId", DbType="Int")]
+		public System.Nullable<int> AnketaId
+		{
+			get
+			{
+				return this._AnketaId;
+			}
+			set
+			{
+				if ((this._AnketaId != value))
+				{
+					if (this._QuestAnketa.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnAnketaIdChanging(value);
+					this.SendPropertyChanging();
+					this._AnketaId = value;
+					this.SendPropertyChanged("AnketaId");
+					this.OnAnketaIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionId", DbType="Int")]
+		public System.Nullable<int> QuestionId
+		{
+			get
+			{
+				return this._QuestionId;
+			}
+			set
+			{
+				if ((this._QuestionId != value))
+				{
+					if (this._QuestQuestions.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQuestionIdChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionId = value;
+					this.SendPropertyChanged("QuestionId");
+					this.OnQuestionIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmpId", DbType="Int")]
+		public System.Nullable<int> EmpId
+		{
+			get
+			{
+				return this._EmpId;
+			}
+			set
+			{
+				if ((this._EmpId != value))
+				{
+					this.OnEmpIdChanging(value);
+					this.SendPropertyChanging();
+					this._EmpId = value;
+					this.SendPropertyChanged("EmpId");
+					this.OnEmpIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmpDepNum", DbType="Int")]
+		public System.Nullable<int> EmpDepNum
+		{
+			get
+			{
+				return this._EmpDepNum;
+			}
+			set
+			{
+				if ((this._EmpDepNum != value))
+				{
+					this.OnEmpDepNumChanging(value);
+					this.SendPropertyChanging();
+					this._EmpDepNum = value;
+					this.SendPropertyChanged("EmpDepNum");
+					this.OnEmpDepNumChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmpDepPos", DbType="Int")]
+		public System.Nullable<int> EmpDepPos
+		{
+			get
+			{
+				return this._EmpDepPos;
+			}
+			set
+			{
+				if ((this._EmpDepPos != value))
+				{
+					this.OnEmpDepPosChanging(value);
+					this.SendPropertyChanging();
+					this._EmpDepPos = value;
+					this.SendPropertyChanged("EmpDepPos");
+					this.OnEmpDepPosChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnswerDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> AnswerDate
+		{
+			get
+			{
+				return this._AnswerDate;
+			}
+			set
+			{
+				if ((this._AnswerDate != value))
+				{
+					this.OnAnswerDateChanging(value);
+					this.SendPropertyChanging();
+					this._AnswerDate = value;
+					this.SendPropertyChanged("AnswerDate");
+					this.OnAnswerDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Result", DbType="Int")]
+		public System.Nullable<int> Result
+		{
+			get
+			{
+				return this._Result;
+			}
+			set
+			{
+				if ((this._Result != value))
+				{
+					this.OnResultChanging(value);
+					this.SendPropertyChanging();
+					this._Result = value;
+					this.SendPropertyChanged("Result");
+					this.OnResultChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ip", DbType="NVarChar(50)")]
+		public string Ip
+		{
+			get
+			{
+				return this._Ip;
+			}
+			set
+			{
+				if ((this._Ip != value))
+				{
+					this.OnIpChanging(value);
+					this.SendPropertyChanging();
+					this._Ip = value;
+					this.SendPropertyChanged("Ip");
+					this.OnIpChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompName", DbType="NChar(255)")]
+		public string CompName
+		{
+			get
+			{
+				return this._CompName;
+			}
+			set
+			{
+				if ((this._CompName != value))
+				{
+					this.OnCompNameChanging(value);
+					this.SendPropertyChanging();
+					this._CompName = value;
+					this.SendPropertyChanged("CompName");
+					this.OnCompNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Agent", DbType="NChar(255)")]
+		public string Agent
+		{
+			get
+			{
+				return this._Agent;
+			}
+			set
+			{
+				if ((this._Agent != value))
+				{
+					this.OnAgentChanging(value);
+					this.SendPropertyChanging();
+					this._Agent = value;
+					this.SendPropertyChanged("Agent");
+					this.OnAgentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comment", DbType="NChar(1000)")]
+		public string Comment
+		{
+			get
+			{
+				return this._Comment;
+			}
+			set
+			{
+				if ((this._Comment != value))
+				{
+					this.OnCommentChanging(value);
+					this.SendPropertyChanging();
+					this._Comment = value;
+					this.SendPropertyChanged("Comment");
+					this.OnCommentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SessionId", DbType="NVarChar(MAX)")]
+		public string SessionId
+		{
+			get
+			{
+				return this._SessionId;
+			}
+			set
+			{
+				if ((this._SessionId != value))
+				{
+					this.OnSessionIdChanging(value);
+					this.SendPropertyChanging();
+					this._SessionId = value;
+					this.SendPropertyChanged("SessionId");
+					this.OnSessionIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QuestAnketa_QuestAnswers", Storage="_QuestAnketa", ThisKey="AnketaId", OtherKey="Id", IsForeignKey=true)]
+		public QuestAnketa QuestAnketa
+		{
+			get
+			{
+				return this._QuestAnketa.Entity;
+			}
+			set
+			{
+				QuestAnketa previousValue = this._QuestAnketa.Entity;
+				if (((previousValue != value) 
+							|| (this._QuestAnketa.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._QuestAnketa.Entity = null;
+						previousValue.QuestAnswers.Remove(this);
+					}
+					this._QuestAnketa.Entity = value;
+					if ((value != null))
+					{
+						value.QuestAnswers.Add(this);
+						this._AnketaId = value.Id;
+					}
+					else
+					{
+						this._AnketaId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("QuestAnketa");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QuestQuestions_QuestAnswers", Storage="_QuestQuestions", ThisKey="QuestionId", OtherKey="Id", IsForeignKey=true)]
+		public QuestQuestions QuestQuestions
+		{
+			get
+			{
+				return this._QuestQuestions.Entity;
+			}
+			set
+			{
+				QuestQuestions previousValue = this._QuestQuestions.Entity;
+				if (((previousValue != value) 
+							|| (this._QuestQuestions.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._QuestQuestions.Entity = null;
+						previousValue.QuestAnswers.Remove(this);
+					}
+					this._QuestQuestions.Entity = value;
+					if ((value != null))
+					{
+						value.QuestAnswers.Add(this);
+						this._QuestionId = value.Id;
+					}
+					else
+					{
+						this._QuestionId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("QuestQuestions");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.QuestGreetings")]
 	public partial class QuestGreetings : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -841,6 +1103,12 @@ namespace ResultCreator
 		
 		private int _AnketaId;
 		
+		private System.Nullable<int> _DepId;
+		
+		private System.Nullable<int> _PosId;
+		
+		private string _GuidId;
+		
     #region Определения метода расширяемости
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -865,6 +1133,12 @@ namespace ResultCreator
     partial void OnAgentChanged();
     partial void OnAnketaIdChanging(int value);
     partial void OnAnketaIdChanged();
+    partial void OnDepIdChanging(System.Nullable<int> value);
+    partial void OnDepIdChanged();
+    partial void OnPosIdChanging(System.Nullable<int> value);
+    partial void OnPosIdChanged();
+    partial void OnGuidIdChanging(string value);
+    partial void OnGuidIdChanged();
     #endregion
 		
 		public QuestGreetings()
@@ -1072,193 +1346,63 @@ namespace ResultCreator
 			}
 		}
 		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.QuestAnketa")]
-	public partial class QuestAnketa : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.Nullable<System.DateTime> _AnketaDate;
-		
-		private string _Name;
-		
-		private bool _NeedGreetings;
-		
-		private int _AnswerType;
-		
-		private EntitySet<QuestAnswers> _QuestAnswers;
-		
-		private EntitySet<QuestQuestions> _QuestQuestions;
-		
-    #region Определения метода расширяемости
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnAnketaDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnAnketaDateChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnNeedGreetingsChanging(bool value);
-    partial void OnNeedGreetingsChanged();
-    partial void OnAnswerTypeChanging(int value);
-    partial void OnAnswerTypeChanged();
-    #endregion
-		
-		public QuestAnketa()
-		{
-			this._QuestAnswers = new EntitySet<QuestAnswers>(new Action<QuestAnswers>(this.attach_QuestAnswers), new Action<QuestAnswers>(this.detach_QuestAnswers));
-			this._QuestQuestions = new EntitySet<QuestQuestions>(new Action<QuestQuestions>(this.attach_QuestQuestions), new Action<QuestQuestions>(this.detach_QuestQuestions));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DepId", DbType="Int")]
+		public System.Nullable<int> DepId
 		{
 			get
 			{
-				return this._Id;
+				return this._DepId;
 			}
 			set
 			{
-				if ((this._Id != value))
+				if ((this._DepId != value))
 				{
-					this.OnIdChanging(value);
+					this.OnDepIdChanging(value);
 					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
+					this._DepId = value;
+					this.SendPropertyChanged("DepId");
+					this.OnDepIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnketaDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> AnketaDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PosId", DbType="Int")]
+		public System.Nullable<int> PosId
 		{
 			get
 			{
-				return this._AnketaDate;
+				return this._PosId;
 			}
 			set
 			{
-				if ((this._AnketaDate != value))
+				if ((this._PosId != value))
 				{
-					this.OnAnketaDateChanging(value);
+					this.OnPosIdChanging(value);
 					this.SendPropertyChanging();
-					this._AnketaDate = value;
-					this.SendPropertyChanged("AnketaDate");
-					this.OnAnketaDateChanged();
+					this._PosId = value;
+					this.SendPropertyChanged("PosId");
+					this.OnPosIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50)")]
-		public string Name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GuidId", DbType="NVarChar(MAX)")]
+		public string GuidId
 		{
 			get
 			{
-				return this._Name;
+				return this._GuidId;
 			}
 			set
 			{
-				if ((this._Name != value))
+				if ((this._GuidId != value))
 				{
-					this.OnNameChanging(value);
+					this.OnGuidIdChanging(value);
 					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
+					this._GuidId = value;
+					this.SendPropertyChanged("GuidId");
+					this.OnGuidIdChanged();
 				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NeedGreetings", DbType="Bit NOT NULL")]
-		public bool NeedGreetings
-		{
-			get
-			{
-				return this._NeedGreetings;
-			}
-			set
-			{
-				if ((this._NeedGreetings != value))
-				{
-					this.OnNeedGreetingsChanging(value);
-					this.SendPropertyChanging();
-					this._NeedGreetings = value;
-					this.SendPropertyChanged("NeedGreetings");
-					this.OnNeedGreetingsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnswerType", DbType="Int NOT NULL")]
-		public int AnswerType
-		{
-			get
-			{
-				return this._AnswerType;
-			}
-			set
-			{
-				if ((this._AnswerType != value))
-				{
-					this.OnAnswerTypeChanging(value);
-					this.SendPropertyChanging();
-					this._AnswerType = value;
-					this.SendPropertyChanged("AnswerType");
-					this.OnAnswerTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QuestAnketa_QuestAnswers", Storage="_QuestAnswers", ThisKey="Id", OtherKey="AnketaId")]
-		public EntitySet<QuestAnswers> QuestAnswers
-		{
-			get
-			{
-				return this._QuestAnswers;
-			}
-			set
-			{
-				this._QuestAnswers.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QuestAnketa_QuestQuestions", Storage="_QuestQuestions", ThisKey="Id", OtherKey="AnketaId")]
-		public EntitySet<QuestQuestions> QuestQuestions
-		{
-			get
-			{
-				return this._QuestQuestions;
-			}
-			set
-			{
-				this._QuestQuestions.Assign(value);
 			}
 		}
 		
@@ -1280,30 +1424,6 @@ namespace ResultCreator
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_QuestAnswers(QuestAnswers entity)
-		{
-			this.SendPropertyChanging();
-			entity.QuestAnketa = this;
-		}
-		
-		private void detach_QuestAnswers(QuestAnswers entity)
-		{
-			this.SendPropertyChanging();
-			entity.QuestAnketa = null;
-		}
-		
-		private void attach_QuestQuestions(QuestQuestions entity)
-		{
-			this.SendPropertyChanging();
-			entity.QuestAnketa = this;
-		}
-		
-		private void detach_QuestQuestions(QuestQuestions entity)
-		{
-			this.SendPropertyChanging();
-			entity.QuestAnketa = null;
 		}
 	}
 }
